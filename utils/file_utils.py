@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 
 
@@ -14,6 +15,11 @@ def copy_file_to_dir(src_file, dst_dir):
 
 def copy_file(src_file, dst_dir, new_name):
     if os.path.isfile(src_file):
+        dstfile = os.path.join(dst_dir, new_name)
+        cmd = 'cp ' + src_file + ' ' + dstfile
+        os.system(cmd)
+        return
+    
         shutil.copy(src_file, dst_dir)
         old_name = src_file.strip().split(os.sep)[-1]
         os.rename(os.path.join(dst_dir, old_name), os.path.join(dst_dir, new_name))
